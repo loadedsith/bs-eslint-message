@@ -18,10 +18,10 @@
     const newWarnings = results.filter((obj) => obj.warningCount > 0);
 
     parseErrors(newErrors).forEach((error) => {
-      console.log(` 🚨 ${error}`);
+      console.log(`🚨 ${error}`);
     });
     parseErrors(newWarnings).forEach((warning) => {
-      console.log(` ⚠️ ${warning}`);
+      console.log(`⚠️ ${warning}`);
     });
   });
 
