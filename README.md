@@ -26,11 +26,19 @@ gulp.task('serve', () => {
   })
 })
 
+let storedResults = [];
+
+browserSync.sockets.on('connect', () => {
+  if (storedResults) {
+    browserSync.sockets.emit('msg:eslint', storedResults);
+  }
+});
+
 gulp.task('lint', () => {
   gulp.src('src/**/*.js')
     .pipe(eslint())
     .pipe(eslint.results(results => {
-      browserSync.sockets.emit('msg:eslint', results)
+       storedResults = results;
     }))
     .pipe(eslint.format())
 })
